@@ -20,7 +20,7 @@ services:
       traefik.http.routers.vegwatch.rule: "Host(`vegwatch.localzet.com`)"
       traefik.http.routers.vegwatch.entrypoints: "websecure"
       traefik.http.routers.vegwatch.tls: "true"
-      traefik.http.routers.vegwatch.tls.certresolver: "cloudflare"
+      traefik.http.routers.vegwatch.tls.certresolver: "letsencrypt"
       traefik.http.services.vegwatch.loadbalancer.server.port: "8080"
     mem_limit: 768m
     cpus: 1.0
