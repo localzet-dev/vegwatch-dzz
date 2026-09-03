@@ -1,0 +1,17 @@
+services:
+  vegwatch:
+    build:
+      context: .
+    image: vegwatch-dzz:latest
+    container_name: vegwatch-dzz
+    restart: unless-stopped
+    ports:
+      - "${VEGWATCH_PORT:-8080}:8080"
+    environment:
+      VEGWATCH_ADMIN_EMAIL: "${VEGWATCH_ADMIN_EMAIL:?Set VEGWATCH_ADMIN_EMAIL in .env}"
+      VEGWATCH_ADMIN_PASSWORD: "${VEGWATCH_ADMIN_PASSWORD:?Set VEGWATCH_ADMIN_PASSWORD in .env}"
+    volumes:
+      - vegwatch-data:/data
+
+volumes:
+  vegwatch-data:

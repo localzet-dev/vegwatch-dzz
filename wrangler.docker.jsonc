@@ -1,0 +1,36 @@
+{
+  "name": "vegwatch-dzz-local",
+  "main": "./dist/server/index.js",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }
+  ],
+  "send_metrics": false,
+  "vars": {
+    "VEGWATCH_AUTH_MODE": "local"
+  },
+  "secrets": {
+    "required": ["VEGWATCH_ADMIN_EMAIL", "VEGWATCH_ADMIN_PASSWORD"]
+  },
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vegwatch-local",
+      "database_id": "00000000-0000-4000-8000-000000000001",
+      "migrations_dir": "./drizzle"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "vegwatch-local-files"
+    }
+  ]
+}

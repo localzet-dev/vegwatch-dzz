@@ -1,0 +1,40 @@
+name: vegwatch-dzz
+
+services:
+  vegwatch:
+    build:
+      context: .
+    image: vegwatch-dzz:0.1.0
+    container_name: vegwatch-dzz
+    restart: unless-stopped
+    environment:
+      VEGWATCH_ADMIN_EMAIL: "${VEGWATCH_ADMIN_EMAIL:?Set VEGWATCH_ADMIN_EMAIL in .env}"
+      VEGWATCH_ADMIN_PASSWORD: "${VEGWATCH_ADMIN_PASSWORD:?Set VEGWATCH_ADMIN_PASSWORD in .env}"
+    volumes:
+      - vegwatch-data:/data
+    networks:
+      - external
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "external"
+      traefik.http.routers.vegwatch.rule: "Host(`vegwatch.localzet.com`)"
+      traefik.http.routers.vegwatch.entrypoints: "websecure"
+      traefik.http.routers.vegwatch.tls: "true"
+      traefik.http.routers.vegwatch.tls.certresolver: "cloudflare"
+      traefik.http.services.vegwatch.loadbalancer.server.port: "8080"
+    mem_limit: 768m
+    cpus: 1.0
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+
+volumes:
+  vegwatch-data:
+
+networks:
+  external:
+    external: true
