@@ -121,3 +121,7 @@ npm run test:local
 [FloraScope](https://github.com/localzet-dev/FloraScope) и этот репозиторий — разные версии одного направления. Общая тема — [florascope](https://github.com/topics/florascope). Здесь используется отдельный стек Workers/D1/R2; перенос данных, моделей и API между версиями требует явного сопоставления схем и не выполняется автоматически.
 
 Проверка чистого checkout: `npm ci --include=optional`, `npm run lint`, `npm run build`, `npm run test:local`. Smoke-тест поднимает локальный runtime Miniflare и проверяет аутентификацию и сохранение прикладных данных. Он не заменяет проверку интеграции с внешними спутниковыми источниками и достоверности научной модели. CI не публикует приложение и не выдаёт релиз.
+
+## Авторство
+
+Сопровождающий собственных изменений: **Ivan Zorin (localzet)** — <creator@localzet.com> · https://www.localzet.com. Copyright © 2026 Localzet Group. Исходное авторство и лицензии сторонних компонентов сохраняются. См. [AUTHORS](.github/AUTHORS.md).
